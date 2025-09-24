@@ -13,3 +13,4 @@ php_package=libapache2-mod-php
 [fedora:vars]
 apache_package=httpd
 php_package=php
+mariadb=mariadb
