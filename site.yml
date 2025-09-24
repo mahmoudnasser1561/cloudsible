@@ -29,6 +29,20 @@
         - "{{ php_package }}"
     when: ansible_distribution == "Ubuntu"
 
+  - name: Deploy static site to Apache document root
+    tags: apache,ubuntu
+    ansible.builtin.copy:
+      src: files/
+      dest: /var/www/html/
+      owner: mahmoud
+      group: mahmoud
+      mode: "0644"
+      directory_mode: "0755"
+    when: ansible_distribution == "Ubuntu"
+
+
+
+
 - hosts: fedora
   become: true
   tasks:
