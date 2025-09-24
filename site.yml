@@ -50,15 +50,20 @@
     when: ansible_distribution == "Fedora"
     register: httpd
 
-  - name: Deploy static site to Apache document root
+  - name: Remove existing site directory
     tags: apache,ubuntu
-    ansible.builtin.copy:
-      src: files/
-      dest: /var/www/html/
-      owner: mahmoud
-      group: mahmoud
-      mode: "0644"
-      directory_mode: "0755"
+    ansible.builtin.file:
+      path: /var/www/html
+      state: absent
+
+  - name: Deploy static site from GitHub
+    tags: apache,ubuntu
+    ansible.builtin.git:
+      repo: "https://github.com/mahmoudnasser1561/Little_lemon"
+      dest: /var/www/html
+      version: main
+      force: yes
+    become: true
     when: ansible_distribution == "Ubuntu"
 
 
