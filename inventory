@@ -5,3 +5,11 @@
 [fedora]
 54.173.196.94
 3.85.198.73
+
+[ubuntu:vars]
+apache_package=apache2
+php_package=libapache2-mod-php
+
+[fedora:vars]
+apache_package=httpd
+php_package=php
