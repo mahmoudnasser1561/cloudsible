@@ -17,62 +17,17 @@
       update_cache: yes
     when: ansible_distribution == "Ubuntu"
 
-- hosts: ubuntu
+- hosts: all
   become: true
-  tasks:
+  roles:
+    - base
 
-  - name: create_user
-    tags: always
-    ansible.builtin.user:
-      name: simone
-      groups: root
-
-  - name: install apache on web servers
-    tags: apache,ubuntu
-    ansible.builtin.apt:
-      name:
-        - "{{ apache_package }}"
-        - "{{ php_package }}"
-    when: ansible_distribution == "Ubuntu"
-
-  - name: install apache on fedora
-    tags: apache,fedora
-    ansible.builtin.dnf:
-      name: httpd
-    when: ansible_distribution == "Fedora"
-
-  - name: change email address for admin
-    tags: apache,fedora
-    ansible.builtin.lineinfile:
-      path: /etc/httpd/conf/httpd.conf
-      regexp: '^ServerAdmin'
-      line: ServerAdmin mahmoudnasser1561@gmail.com
-    when: ansible_distribution == "Fedora"
-    register: httpd
-
-  - name: Remove existing site directory
-    tags: apache,ubuntu
-    ansible.builtin.file:
-      path: /var/www/html
-      state: absent
-
-  - name: Deploy static site from GitHub
-    tags: apache,ubuntu
-    ansible.builtin.git:
-      repo: "https://github.com/mahmoudnasser1561/Little_lemon"
-      dest: /var/www/html
-      version: main
-      force: yes
-    become: true
-    when: ansible_distribution == "Ubuntu"
-
-
-- hosts: fedora
+- hosts: db_servers
   become: true
-  tasks:
-  - name: install maria db on fedora
-    tags: db,fedora
-    ansible.builtin.dnf:
-      name: "{{ mariadb }}"
-      state: latest
-    when: ansible_distribution == "Fedora"
+  roles:
+    - db_servers
+
+- hosts: web_servers
+  become: true
+  roles:
+    - web_servers

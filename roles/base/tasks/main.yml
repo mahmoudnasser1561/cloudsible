@@ -1,0 +1,15 @@
+- name: create user
+  tags: always
+  ansible.builtin.user:
+    name: simone
+    groups: root
+
+- name: add sudoers file for simone
+  tags: always
+  ansible.builtin.copy:
+    src: sudoer_simone
+    dest: /etc/sudoers.d/simone
+    owner: root
+    group: root
+    mode: 0440
+

@@ -1,16 +1,16 @@
-[ubuntu]
+[web_servers]
 54.160.145.127
 3.93.199.181
 
-[fedora]
+[db_servers]
 54.173.196.94
 3.85.198.73
 
-[ubuntu:vars]
+[web_servers:vars]
 apache_package=apache2
 php_package=libapache2-mod-php
 
-[fedora:vars]
+[db_servers:vars]
 apache_package=httpd
 php_package=php
 mariadb=mariadb
