@@ -25,5 +25,5 @@
     regexp: '^ServerAdmin'
     line: ServerAdmin mahmoudnasser1561@gmail.com
   when: ansible_distribution == "Fedora"
-  register: apache
+  notify: restart_apache
 

@@ -1,3 +1,4 @@
 apache_package: httpd
 php_package: php
 mariadb: mariadb
+apache_service: httpd
