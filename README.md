@@ -3,6 +3,9 @@
 
 This repository contains an Ansible playbook for automating the setup of web and database servers on Fedora and Ubuntu systems running on AWS EC2 instances. It controls 4 EC2 instances (2 web servers and 2 DB servers), demonstrating cloud infrastructure management skills such as provisioning virtual machines, secure remote automation, and environment separation (production vs. staging). The playbook handles OS-specific package updates, base configurations, and role-specific installations (e.g., Apache/PHP for web servers with custom configs and handlers, MariaDB for DB servers). Ideal for learning Ansible, DevOps practices, cloud orchestration, or bootstrapping a simple scalable infrastructure on AWS.
 
+<img width="890" height="501" alt="ansible" src="https://github.com/user-attachments/assets/19c76d7a-f3c2-4947-b594-5c7c18328966" />
+
+
 ## Features
 - **Cross-Distro Support**: Conditional tasks for Fedora (DNF) and Ubuntu (APT) package management.
 - **Modular Roles**: Separates concerns with roles for base setup, web servers, and DB servers.
